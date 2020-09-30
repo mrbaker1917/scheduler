@@ -2,12 +2,13 @@ import React from 'react';
 import "./styles.scss";
 import Header from "./Header";
 import Empty from "./Empty";
+import Show from "./Show";
 
 function Appointment(props) {
   return (
     <article className="appointment">
-      <Header time="12pm" />
-      {/* <Empty addOn={props.addOn} /> */}
+      <Header time={props.time} />
+     {props.interview ? <Show student={props.interview.student} interviewer={props.interview.interviewer} /> : <Empty id={props.id} />}
     </article>
   );
 }
