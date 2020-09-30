@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 const Form = (props) => {
+  const [name, setName] = useState(props.name || "");
+const [interviewer, setInterviewer] = useState(props.interviewer || null);
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -12,6 +14,8 @@ const Form = (props) => {
             name={props.name}
             type="text"
             placeholder="Enter Student Name"
+            onChange={(event) => setName(event.target.value)}
+            onClick={() => setInterviewer(props.interviewer)}
           /*
             This must be a controlled component
           */
