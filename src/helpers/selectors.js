@@ -14,3 +14,14 @@ export function getAppointmentsForDay(state, day) {
   };
   return daysApptsDets;
 };
+
+export function getInterview(state, interview) {
+  const interviewObj = {};
+  if (interview === null) {
+    return null;
+  } else {
+    interviewObj.student = interview.student;
+    interviewObj.interviewer = state.interviewers[interview.interviewer];
+  }
+  return interviewObj;
+};
