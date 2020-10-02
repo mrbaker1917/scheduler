@@ -17,6 +17,18 @@ export default function Application() {
   });
   const setDay = day => setState({ ...state, day });
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+  }
+
   useEffect(() => {
     const baseURL = "http://192.168.1.69:8001";
     const days = axios.get(`${baseURL}/api/days`);
@@ -39,6 +51,7 @@ export default function Application() {
         time={appointment.time}
         interview={interview}
         interviewers={daysInterviewers}
+        bookInterview={bookInterview}
       />
     );
   });
