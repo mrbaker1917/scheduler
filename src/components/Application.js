@@ -25,13 +25,13 @@ export default function Application() {
     const promises = [days, appointments, interviewers];
     Promise.all(promises)
       .then((arrOfResponses) => {
-        setState(prev => ({ ...prev, days: arrOfResponses[0].data, appointments: arrOfResponses[1].data, interviewers: arrOfResponses[2].data }))})
+        setState(prev => ({ ...prev, days: arrOfResponses[0].data, appointments: arrOfResponses[1].data, interviewers: arrOfResponses[2].data }))
+      })
   }, []);
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const daysInterviewers = getInterviewersForDay(state, state.day);
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-
     return (
       <Appointment
         key={appointment.id}
@@ -39,10 +39,10 @@ export default function Application() {
         time={appointment.time}
         interview={interview}
         interviewers={daysInterviewers}
-        />
+      />
     );
   });
-  
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -59,7 +59,7 @@ export default function Application() {
       </section>
       <section className="schedule">
         <ul>
-            {schedule}
+          {schedule}
         </ul>
       </section>
     </main>
