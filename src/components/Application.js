@@ -38,6 +38,28 @@ export default function Application() {
       });
   }
 
+  function cancelInterview(id) {
+    
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    return axios.delete(`/api/appointments/${id}`)
+    .then(response => {
+      if (response.status === 204) {
+        setState({
+          ...state,
+          appointments
+        });
+      }
+    });
+  }
+
   useEffect(() => {
     const baseURL = "http://192.168.1.69:8001";
     const days = axios.get(`${baseURL}/api/days`);
@@ -61,6 +83,7 @@ export default function Application() {
         interview={interview}
         interviewers={daysInterviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
