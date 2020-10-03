@@ -27,6 +27,16 @@ export default function Application() {
       ...state.appointments,
       [id]: appointment
     };
+
+    return axios.put(`/api/appointments/${id}`, { interview })
+      .then(response => {
+        if (response.status === 204) {
+          setState({
+            ...state,
+            appointments
+          });
+        }
+      });
   }
 
   useEffect(() => {
@@ -73,6 +83,7 @@ export default function Application() {
       <section className="schedule">
         <ul>
           {schedule}
+          <Appointment key="last" time="5pm" />
         </ul>
       </section>
     </main>
