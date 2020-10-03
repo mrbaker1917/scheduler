@@ -41,7 +41,7 @@ function Appointment(props) {
   }
 
   function deleteInt(id) {
-    transition(DELETING);
+    transition(DELETING, true);
     props.cancelInterview(id)
       .then(() => {
         transition(EMPTY);
@@ -59,6 +59,11 @@ function Appointment(props) {
     transition(EDIT);
   }
 
+  function onClose() {
+    back();
+    transition(SHOW, true);
+  }
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -69,7 +74,8 @@ function Appointment(props) {
       {mode === DELETING && <Status message={"Deleting"} />}
       {mode === CONFIRM && <Confirm message={"Are you sure you want to delete your appointment?"} id={props.id} onConfirm={deleteInt} onCancel={onCancelDelete} />}
       {mode === EDIT && <Form onSave={save} student={props.interview.student} interviewers={props.interviewers} interviewer={props.interview.interviewer.id} id={props.id} onCancel={() => back(SHOW)} />}
-      {mode === ERROR_SAVE && <Error />}
+      {mode === ERROR_SAVE && <Error onClose={onClose} />}
+      {mode === ERROR_DELETE && <Error onClose={onClose} />}
     </article>
   );
 }
