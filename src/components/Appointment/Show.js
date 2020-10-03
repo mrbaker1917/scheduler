@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Show = (props) => {
-  
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
@@ -17,7 +16,7 @@ const Show = (props) => {
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
-            onClick={props.onEdit}
+            onClick={() => props.onEdit(props.student, props.interviewer.id)}
           />
           <img
             className="appointment__actions-button"
