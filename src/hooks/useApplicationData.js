@@ -21,12 +21,20 @@ function bookInterview(id, interview) {
     [id]: appointment
   };
 
+  const newDays = state.days.map((day) => {
+    if (day.appointments.includes(id)) {
+      day.spots = day.spots - 1;
+    }
+    return day;
+  });
+
   return axios.put(`/api/appointments/${id}`, { interview })
     .then(response => {
       if (response.status === 204) {
         setState({
           ...state,
-          appointments
+          appointments,
+          newDays
         });
       }
     });
@@ -43,12 +51,20 @@ function cancelInterview(id) {
     [id]: appointment
   }
 
+  const newDays = state.days.map((day) => {
+    if (day.appointments.includes(id)) {
+      day.spots = day.spots + 1;
+    }
+    return day;
+  });
+
   return axios.delete(`/api/appointments/${id}`)
   .then(response => {
     if (response.status === 204) {
       setState({
         ...state,
-        appointments
+        appointments,
+        newDays
       });
     }
   });
