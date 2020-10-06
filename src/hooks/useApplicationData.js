@@ -92,9 +92,9 @@ export function useApplicationData(initial) {
 
   useEffect(() => {
     const baseURL = "http://192.168.1.69:8001";
-    const days = axios.get(`${baseURL}/api/days`);
-    const appointments = axios.get(`${baseURL}/api/appointments`);
-    const interviewers = axios.get(`${baseURL}/api/interviewers`);
+    const days = axios.get(`/api/days`);
+    const appointments = axios.get(`/api/appointments`);
+    const interviewers = axios.get(`/api/interviewers`);
     const promises = [days, appointments, interviewers];
     Promise.all(promises).then((arrOfResponses) => {
       dispatch({
