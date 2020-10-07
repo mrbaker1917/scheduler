@@ -61,9 +61,7 @@ function Appointment(props) {
 
   function onClose() {
     back();
-    transition(SHOW, true);
   }
-
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
