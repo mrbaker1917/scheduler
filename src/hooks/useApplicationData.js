@@ -33,10 +33,10 @@ export function useApplicationData(initial) {
 
       case SET_INTERVIEW: {
         const newDays = state.days.map((day) => {
-          if (state.appointments[action.appointment_id].interview === null) {
+          if (day.appointments.includes(action.appointment_id) && state.appointments[action.appointment_id].interview === null) {
             return { ...day, spots: day.spots - 1 };
           }
-          if (action.interview === null) {
+          if (day.appointments.includes(action.appointment_id) && action.interview === null) {
             return { ...day, spots: day.spots + 1 };
           }
           return day;
@@ -73,13 +73,6 @@ export function useApplicationData(initial) {
   }
 
   function cancelInterview(appointment_id) {
-    const newDays = state.days.map((day) => {
-      if (day.appointments.includes(appointment_id)) {
-        return { ...day, spots: day.spots + 1 };
-      }
-      return day;
-    });
-
     return axios
       .delete(`/api/appointments/${appointment_id}`)
       .then((response) => {
@@ -87,8 +80,7 @@ export function useApplicationData(initial) {
           dispatch({
             type: SET_INTERVIEW,
             appointment_id,
-            interview: null,
-            newDays,
+            interview: null
           });
         }
       });
