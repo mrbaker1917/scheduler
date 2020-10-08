@@ -40,5 +40,5 @@ npm run cypress
 
 ## Screenshots
 
-!["Big screen"](https://github.com/ashakir96/quizapp/blob/master/docs/home-page.png)
-!["tablet screen"](https://github.com/ashakir96/quizapp/blob/master/docs/user-home.png)
+!["Big screen"](https://github.com/mrbaker1917/scheduler/blob/master/docs/laptop_scheduler.PNG)
+!["tablet screen"](https://github.com/mrbaker1917/scheduler/blob/master/docs/table_scheduler.PNG)
